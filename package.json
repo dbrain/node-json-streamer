@@ -1,0 +1,11 @@
+{
+  "name": "json-streamer",
+  "description": "A really basic library for streaming JSON",
+  "version": "0.0.1",
+  "main": "index",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "engine": "node >= 0.6.0"
+}
