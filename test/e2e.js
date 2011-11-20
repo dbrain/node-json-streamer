@@ -4,10 +4,12 @@ var jsonStreamer = require('../lib/jsonStreamer');
 
 var server = jsonStreamer.listen(3001);
 
-server.on('msg', function gotMsg(msg) {
-  console.log('Server received message: ', msg.content);
-  msg.client.writeJSON({ ok: true });
-})
+server.on('connection', function (client) {
+  client.on('msg', function gotMsg(msg) {
+    console.log('Server received message: ', msg.content);
+    client.writeJSON({ ok: true });
+  })
+});
 
 var client = jsonStreamer.connect(3001, function connectListener() {
   console.log("Connected");
