@@ -6,6 +6,7 @@ Oh it'll also randomly purge the buffer if it hits 512kb without any valid JSON.
 
 ## Installation
     $ npm link path/to/json-streamer
+    $ npm install json-streamer
 
 ## Requirements
 - A recent version of node. package.json says v0.6.0 but I'm sure it can handle less than that.
