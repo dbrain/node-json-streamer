@@ -25,6 +25,11 @@ var server = jsonStreamer.listen(3001);
 
 server.on('connection', function (client) {
   client.on('msg', function gotMsg(msg) {
+    // Will get:
+    // {content: { 'a': 'b', 'c': 'd'}}
+    // {content: { 'b': 'b', 'd': 'd'}}
+    // {content: { 'a': 'ok'}}
+    // {content: { 'a': 'b'}}
     console.log('Server received message: ', msg.content);
     client.writeJSON({ ok: true });
   })
@@ -38,10 +43,12 @@ var client = jsonStreamer.connect(3001, function connectListener() {
   client.writeJSON("OH GOD WHY");
   client.writeJSON('{"a":"b"}');
   client.writeJSON('{"a":');
-  client.writeJSON('"b"}');
+  client.writeJSON('"z"}');
 });
 
 client.on('msg', function gotMsg(msg) {
+  // Will get * 4 (all valid messages):
+  // {content: { 'ok': true}
   console.log('Client received message: ', msg.content);
 });
 ```
