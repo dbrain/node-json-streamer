@@ -1,6 +1,6 @@
 # node-json-streamer
 A really basic library wrapping a node TCP socket sending and parsing multiple JSON objects.
-All this does is add an escape character on the client side (\u2603: A unicode snowman), split up the messages received on ]\u2603 || }\u2603, then emit 'msg' with the parsed JSON or nothing at all if it failed.
+All this does is add an escape character on the client side (\u00a0: A unicode control character), split up the messages received on ]\u00a0 || }\u00a0, then emit 'msg' with the parsed JSON or nothing at all if it failed.
 It does some error checking so if you send fluff down the socket then proper JSON it'll trim the fluff (without any kind of notification at all).
 Oh it'll also randomly purge the buffer if it hits 512kb without any valid JSON. You know, just FYI.
 
